@@ -10,8 +10,14 @@ class SPService:
         """
         Construtor.
         """
-
         self.params = kwargs
+            
+        if kwargs["license_plate"][4].isalpha():
+            self.plate_convert()
+
+    def plate_convert(self):
+        plate = self.params["license_plate"]
+        self.params["license_plate"] = plate[:4] + str(ord(plate[4]) - 65) + plate[5:]
 
     def get_json_response(self, method):
         """
