@@ -24,8 +24,15 @@ class SPService:
         """
         Pega os débitos de acordo com a opção passada.
         """
+        if not self.params['debt_option']:
+            debts = {
+                'IPVAs': self.get_json_response("ConsultaIPVA").get('IPVAs') or {},
+                'DPVATs': self.get_json_response("ConsultaDPVAT").get('DPVATs') or {},
+                'Multas': self.get_json_response("ConsultaMultas").get('Multas') or {},
+            }
+            return debts
 
-        if self.params['debt_option'] == 'ticket':
+        elif self.params['debt_option'] == 'ticket':
             response_json = self.get_json_response("ConsultaMultas")
 
         elif self.params['debt_option'] == 'ipva':
