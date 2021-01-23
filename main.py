@@ -35,10 +35,13 @@ if __name__ == "__main__":
         result = {
             'debts': parser.collect_ticket_debts(),
             'ivpa': parser.collect_ipva_debts(),
-            'dpvat': parser.collect_insurance_debts()
+            'dpvat': parser.collect_insurance_debts(),
+            'licensing': parser.collect_licensing_debts()
         }
     elif debt_option == "ticket":
         result = parser.collect_ticket_debts()
+    elif debt_option == "licensing":
+        result = parser.collect_licensing_debts()
     elif debt_option == "ipva":
         result = parser.collect_ipva_debts()
     elif debt_option == "dpvat":

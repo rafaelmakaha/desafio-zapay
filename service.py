@@ -29,11 +29,15 @@ class SPService:
                 'IPVAs': self.get_json_response("ConsultaIPVA").get('IPVAs') or {},
                 'DPVATs': self.get_json_response("ConsultaDPVAT").get('DPVATs') or {},
                 'Multas': self.get_json_response("ConsultaMultas").get('Multas') or {},
+                'Licenciamento': self.get_json_response("ConsultaLicenciamento") or {},
             }
             return debts
 
         elif self.params['debt_option'] == 'ticket':
             response_json = self.get_json_response("ConsultaMultas")
+
+        elif self.params['debt_option'] == 'licensing':
+            response_json = self.get_json_response("ConsultaLicenciamento")
 
         elif self.params['debt_option'] == 'ipva':
             response_json = self.get_json_response("ConsultaIPVA")
@@ -48,6 +52,7 @@ class SPService:
             'IPVAs': response_json.get('IPVAs') or {},
             'DPVATs': response_json.get('DPVATs') or {},
             'Multas': response_json.get('Multas') or {},
+            'Licenciamento': response_json or {},
         }
 
         for debt in debts:
