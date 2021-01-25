@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 class API:
     vehicles = [
         ("ABC1234", "11111111111"),
